@@ -1,11 +1,17 @@
 from datetime import datetime
 from typing import Optional
 
-from pydantic import BaseModel, Field, Extra
+from pydantic import BaseModel, Extra, Field
+
+from app.core.constants import CHARITY_PROJECT_NAME_MAX_LENGTH
 
 
 class CharityProjectBase(BaseModel):
-    name: str = Field(..., min_length=5, max_length=100)
+    name: str = Field(
+        ...,
+        min_length=5,
+        max_length=CHARITY_PROJECT_NAME_MAX_LENGTH,
+    )
     description: str = Field(..., min_length=10)
     full_amount: int = Field(..., gt=0)
 
@@ -16,7 +22,11 @@ class CharityProjectCreate(CharityProjectBase):
 
 
 class CharityProjectUpdate(BaseModel):
-    name: Optional[str] = Field(None, min_length=5, max_length=100)
+    name: Optional[str] = Field(
+        None,
+        min_length=5,
+        max_length=CHARITY_PROJECT_NAME_MAX_LENGTH,
+    )
     description: Optional[str] = Field(None, min_length=10)
     full_amount: Optional[int] = Field(None, gt=0)
 

@@ -75,4 +75,4 @@ async def get_yandex_client() -> YandexDiskClient:
             status_code=HTTPStatus.SERVICE_UNAVAILABLE,
             detail="Токен Яндекс Диска не настроен.",
         )
-    return YandexDiskClient(settings.yandex_disk_token)
+    yield YandexDiskClient(settings.yandex_disk_token)

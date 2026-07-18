@@ -2,7 +2,7 @@
 from typing import Optional
 
 import httpx
-from fastapi import Depends, HTTPException
+from fastapi import HTTPException
 
 from app.core.config import settings
 

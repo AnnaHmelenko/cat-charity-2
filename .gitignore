@@ -134,3 +134,6 @@ dmypy.json
 test.db
 .vscode/
 fast_api.db
+
+fastapi.db
+create_db.py

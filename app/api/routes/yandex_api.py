@@ -1,4 +1,4 @@
-from http import HTTPStatus
+﻿from http import HTTPStatus
 
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.ext.asyncio import AsyncSession
@@ -13,7 +13,7 @@ router = APIRouter()
 
 
 @router.post(
-    '/',
+    "/",
     response_model=str,
     dependencies=[Depends(current_superuser)],
 )
@@ -27,15 +27,15 @@ async def create_report(
     if not projects:
         raise HTTPException(
             status_code=HTTPStatus.NOT_FOUND,
-            detail='Нет закрытых проектов для формирования отчёта.',
+            detail="Нет закрытых проектов для формирования отчёта.",
         )
     try:
         public_url = await create_simple_report(projects, yandex_client)
     except HTTPException:
         raise
-    except Exception as error:
+    except Exception:
         raise HTTPException(
             status_code=HTTPStatus.INTERNAL_SERVER_ERROR,
-            detail=f'Ошибка при создании отчёта: {error}',
+            detail="Не удалось сформировать отчёт. Попробуйте позже.",
         )
     return public_url
